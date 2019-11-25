@@ -8,8 +8,7 @@ import java.util.List;
 
 @Entity
 public class Animal extends PanacheEntity {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
     private String name;
     @OneToMany(mappedBy = "animal")
     @JsonbTransient

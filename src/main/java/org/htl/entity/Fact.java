@@ -10,8 +10,7 @@ import java.util.List;
 
 @Entity
 public class Fact extends PanacheEntity {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
     private String text;
     @ManyToOne
     @JoinColumn(name = "name")
