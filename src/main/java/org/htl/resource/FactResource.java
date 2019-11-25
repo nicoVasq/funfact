@@ -62,6 +62,7 @@ public class FactResource {
         }
 
 
+
         Fact fact = new Fact();
         fact.setAnimal(animal);
         fact.setSource(obj.getString("source"));
