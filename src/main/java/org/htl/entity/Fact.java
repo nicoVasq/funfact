@@ -23,13 +23,6 @@ public class Fact extends PanacheEntity {
     public static List<Fact> getAllFacts(){ return listAll(); }
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getText() {
         return text;

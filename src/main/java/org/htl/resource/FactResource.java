@@ -9,6 +9,7 @@ import org.htl.service.FactService;
 
 import javax.inject.Inject;
 import javax.json.JsonObject;
+import javax.json.JsonValue;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -51,9 +52,15 @@ public class FactResource {
     public Response getNewFunfact(){
         JsonObject obj = service.getRandomFact();
 
-        Animal animal = new Animal();
-        animal.setName(obj.getString("type"));
-        animal.persist();
+        String animalName = obj.getString("type");
+        Animal animal = Animal.findAnimalByName(animalName);
+
+        if(animal == null) {
+            animal = new Animal();
+            animal.setName(animalName);
+            animal.persist();
+        }
+
 
         Fact fact = new Fact();
         fact.setAnimal(animal);

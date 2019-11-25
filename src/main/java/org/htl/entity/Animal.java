@@ -4,6 +4,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Entity
@@ -14,12 +15,14 @@ public class Animal extends PanacheEntity {
     @JsonbTransient
     private List<Fact> facts;
 
-    public Long getId() {
-        return id;
+
+    public static Animal findAnimalByName(String name){
+        return find("name", name).firstResult();
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Transactional
+    public static void addAnimal(Animal animal){
+        animal.persist();
     }
 
     public String getName() {
